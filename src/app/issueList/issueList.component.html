@@ -1,0 +1,46 @@
+<h2>Issue List {{issueName}}</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Issue Description</th>
+            <th>Severity</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let issue of issues">
+            <td>{{issue.desc}}</td>
+            <td>{{issue.severity}}</td>
+            <td>{{issue.status}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<br>
+<br>
+
+
+<form (ngSubmit)="addIssue()">
+    <label>
+        Description :
+        <input type="text" [(ngModel)]="newIssue.desc" name="Description">
+    </label>
+    <br><br>
+    <label>
+        Severity :
+        <select [(ngModel)]="newIssue.severity" name="severity">
+            <option value="Critical"> Critical</option>
+            <option value="Minor">Minor</option>
+            <option value="Major">Major</option>
+        </select>
+    </label>
+    <br><br>
+    <label>Status : </label>
+    <label *ngFor="let st of status let i = index">
+        <input type="radio" id="st{{i}}" name="status" [value]="st" [(ngModel)]="newIssue.status">
+        {{st}}
+    </label>
+    <br><br>
+    <button type="submit" (click)="Onclick(newIssue)">Add Issue</button>
+</form>
